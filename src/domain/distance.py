@@ -1,20 +1,27 @@
-METRES_IN_KILOMETERS = 1000
+from dataclasses import dataclass
 
+METRES_IN_KILOMETERS: float = 1000.0
+
+@dataclass(frozen=True, slots=True)
 class Distance:
-    metres: int
+    meters: int
 
-    def __init__(self, metres: int = 0) -> None:
-        self.metres = metres
+    @staticmethod
+    def fromKm(km: float) -> 'Distance':
+        return Distance(int(km * 1000))
 
-    def setDistance(self, newDistance: int|float) -> None:
-        isKm: bool = (isinstance(newDistance, int) and newDistance < 100) or (isinstance(newDistance, float))
-        if(isKm):
-            newDistance = int(newDistance * METRES_IN_KILOMETERS)
+    @staticmethod
+    def fromMeters(meters: int) -> 'Distance':
+        return Distance(meters)
 
-        self.metres = int(newDistance)
+    def toKm(self) -> float:
+        return round(self.meters / METRES_IN_KILOMETERS, 2)
 
-    def getMetres(self) -> int:
-        return self.metres
+    def rawKm(self) -> int:
+        return int(self.meters / 1000)
 
-    def getKilometers(self) -> float:
-        return self.metres / 1000
+# make tests with pytest with this code
+distance = Distance.fromMeters(1234)
+print(distance.meters)
+print(distance.toKm())
+print(distance.rawKm())

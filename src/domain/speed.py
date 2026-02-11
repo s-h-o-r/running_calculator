@@ -2,16 +2,17 @@ SECONDS_IN_MINUTE: int = 60
 
 # Скорость бега в км/ч
 class Speed:
-    speed: float
+    speed: float = 0.
 
-    def __init__(self, speed: float = 0.) -> None:
-        self.speed = speed
+    def __init__(self, speed: int|float = 0.) -> None:
+        self.setSpeed(speed)
 
     def getSpeed(self) -> float:
-        return round(self.speed, 2)
-    
-    def setSpeed(self, newSpeed: float) -> None:
-        self.speed = newSpeed
+        speedFloat: float = self.kilometersPerHour
+        return round(self, 2)
+
+    def setSpeed(self, speed: int|float) -> None:
+        self.speed = round(speed, 1)
 
 # Темп бега в минутах на километр
 class Tempo:
