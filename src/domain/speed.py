@@ -8,8 +8,7 @@ class Speed:
         self.setSpeed(speed)
 
     def getSpeed(self) -> float:
-        speedFloat: float = self.kilometersPerHour
-        return round(self, 2)
+        return round(self.speed, 2)
 
     def setSpeed(self, speed: int|float) -> None:
         self.speed = round(speed, 1)
