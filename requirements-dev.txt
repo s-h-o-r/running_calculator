@@ -1,0 +1,9 @@
+# Tests
+pytest==9.0.2
+pytest-cov==7.0.0
+hypothesis==6.151.6
+
+# Useful
+pyright==1.1.408
+ruff==0.15.0
+coverage==7.13.4
