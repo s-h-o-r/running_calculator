@@ -8,7 +8,9 @@ class Distance:
 
     @staticmethod
     def fromKm(km: float) -> 'Distance':
-        return Distance(int(km * 1000))
+        if km < 0:
+            raise ValueError("Distance can't be negative")
+        return Distance(int(round(km * 1000)))
 
     @staticmethod
     def fromMeters(meters: int) -> 'Distance':
@@ -19,9 +21,3 @@ class Distance:
 
     def rawKm(self) -> int:
         return int(self.meters / 1000)
-
-# make tests with pytest with this code
-distance = Distance.fromMeters(1234)
-print(distance.meters)
-print(distance.toKm())
-print(distance.rawKm())
