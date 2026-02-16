@@ -17,7 +17,7 @@ class Distance:
         return Distance(meters)
 
     def toKm(self) -> float:
-        return round(self.meters / METRES_IN_KILOMETERS, 2)
+        return self.meters / METRES_IN_KILOMETERS
 
     def rawKm(self) -> int:
         return int(self.meters / 1000)
