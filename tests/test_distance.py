@@ -1,5 +1,6 @@
-from domain.distance import Distance
 import pytest
+
+from domain.distance import Distance
 
 # fromKm(km) test
 
