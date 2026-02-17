@@ -20,7 +20,7 @@ class Tempo:
 
     @staticmethod
     def fromMinutes(minutes: int|float):
-        return Tempo(minutes * SECONDS_IN_MINUTE)
+        return Tempo(int(minutes * SECONDS_IN_MINUTE))
 
     @staticmethod
     def fromStrPace(strPace: str):
