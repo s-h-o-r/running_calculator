@@ -20,18 +20,19 @@ class Tempo:
 
     @staticmethod
     def fromMinutes(minutes: int|float):
-        return Tempo(minutes * SECONDS_IN_MINUTE)
+        minutes = round(minutes, 1) if isinstance(minutes, float) else int(minutes)
+        return Tempo(int(minutes * SECONDS_IN_MINUTE))
 
     @staticmethod
     def fromStrPace(strPace: str):
         if(not isinstance(strPace, str)):
             raise ValueError('Expected string')
-        elif(strPace[0] is ':' or 0 >= strPace.count(':') > 1):
+        elif(strPace[0] == ':' or 0 >= strPace.count(':') > 1):
             raise ValueError('Expected string formatting as "min:sec"')
 
         delim_pos = strPace.find(':')
-        minutes: int = int(strPace[delim_pos:])
-        seconds = int(strPace[:delim_pos])
+        minutes = int(strPace[:delim_pos])
+        seconds = int(strPace[delim_pos + 1:])
         if(minutes < 0 or seconds < 0):
             raise ValueError('Minutes and seconds in tempo str cannot be negative')
         if(seconds >= SECONDS_IN_MINUTE):
@@ -48,4 +49,7 @@ class Tempo:
         return int(self.seconds % SECONDS_IN_MINUTE)
 
     def str(self) -> str:
-        return f'{int(self.getOnlyMinutes())}:{self.getOnlySeconds()}'
+        return f'{self.getOnlyMinutes()}' + ':' + f'{self.getOnlySeconds()}'.rjust(2, '0')
+
+string = '10'
+print(Tempo.fromMinutes(string))
