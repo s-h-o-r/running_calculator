@@ -5,13 +5,10 @@ SECONDS_IN_MINUTE: int = 60
 # Скорость бега в км/ч
 @dataclass(slots=True)
 class Speed:
-    __speed: float = 0.
+    raw_value: float = 0.
 
-    def getSpeed(self) -> float:
-        return round(self.__speed, 1)
-
-    def setSpeed(self, speed: int|float) -> None:
-        self.__speed = round(speed, 1)
+    def getTreadmillSpeed(self) -> float:
+        return round(self.raw_value, 1)
 
 # Темп бега в минутах на километр
 @dataclass(frozen=True, slots=True)
@@ -19,8 +16,8 @@ class Tempo:
     seconds: int
 
     @staticmethod
-    def fromMinutes(minutes: int|float):
-        minutes = round(minutes, 1) if isinstance(minutes, float) else int(minutes)
+    def fromMinutes(minutes: int|float|str):
+        minutes = minutes if not isinstance(minutes, str) else int(minutes)
         return Tempo(int(minutes * SECONDS_IN_MINUTE))
 
     @staticmethod
@@ -50,6 +47,3 @@ class Tempo:
 
     def str(self) -> str:
         return f'{self.getOnlyMinutes()}' + ':' + f'{self.getOnlySeconds()}'.rjust(2, '0')
-
-string = '10'
-print(Tempo.fromMinutes(string))
