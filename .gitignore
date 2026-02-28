@@ -100,3 +100,8 @@ doxygen/*
 
 # extracted messages for Flask translation
 *.pot
+
+# Python
+.env*
+__pycache__
+.pytest*
