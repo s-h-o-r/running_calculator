@@ -5,13 +5,13 @@ SECONDS_IN_MINUTE: int = 60
 # Скорость бега в км/ч
 @dataclass(slots=True)
 class Speed:
-    speed: float = 0.
+    __speed: float = 0.
 
     def getSpeed(self) -> float:
-        return round(self.speed, 1)
+        return round(self.__speed, 1)
 
     def setSpeed(self, speed: int|float) -> None:
-        self.speed = round(speed, 1)
+        self.__speed = round(speed, 1)
 
 # Темп бега в минутах на километр
 @dataclass(frozen=True, slots=True)
