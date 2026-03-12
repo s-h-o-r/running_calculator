@@ -1,14 +1,10 @@
-import telebot
-import os
+from bot import create_bot
+from tg_handlers import register_handlers
 
-bot = telebot.TeleBot(os.getenv('TG_BOT_TOKEN'))
+def main():
+    bot = create_bot()
+    register_handlers(bot)
+    bot.infinity_polling()
 
-@bot.message_handler(commands=['start', 'help'])
-def send_welcome(message):
-    bot.reply_to(message, 'Fuck yeah')
-
-@bot.message_handler(func=lambda message: True)
-def message_handler(message):
-    bot.reply_to(message, message.text)
-
-bot.infinity_polling()
+if __name__ == '__main__':
+    main()
