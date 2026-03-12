@@ -1,6 +1,7 @@
 import telebot
+import os
 
-bot = telebot.TeleBot('')
+bot = telebot.TeleBot(os.getenv('TG_BOT_TOKEN'))
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
