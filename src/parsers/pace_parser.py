@@ -8,7 +8,7 @@ class ParsedInput:
     error: Optional[str] = None
 
     def is_valid(self) -> bool:
-        return self.error is None or self.value is not None
+        return self.error is None and self.value is not None
 
 
 def parse_speed_or_tempo(raw: str) -> ParsedInput:

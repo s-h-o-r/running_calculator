@@ -8,7 +8,7 @@ from parsers.pace_parser import ParsedInput
     [
         (None, None, False),
         (Speed(), None, True),
-        (Tempo(), None, True),
+        (Tempo(seconds=0), None, True),
         (None, 'error', False),
         (None, '', False)
     ]
