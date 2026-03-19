@@ -102,6 +102,6 @@ doxygen/*
 *.pot
 
 # Python
-.env*
+*.env*
 __pycache__
 .pytest*

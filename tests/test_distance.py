@@ -5,7 +5,7 @@ from domain.distance import Distance
 # fromKm(km) test
 
 @pytest.mark.parametrize(
-    "km, expected_meters",
+    'km, expected_meters',
     [
         (0, 0),
         (0.0, 0),
@@ -29,7 +29,7 @@ def test_negative_km():
 # toKm(meters) test
 
 @pytest.mark.parametrize(
-    "meters, expected_km",
+    'meters, expected_km',
     [
         (900, 0.9),
         (1, 0.001),
@@ -47,7 +47,7 @@ def test_toKm_conversion(meters, expected_km):
 # rawKm(meters) test
 
 @pytest.mark.parametrize(
-    "meters, expected_raw_km",
+    'meters, expected_raw_km',
     [
         (900, 0),
         (1, 0),
