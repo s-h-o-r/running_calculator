@@ -18,7 +18,7 @@ class ParsedPace:
     def is_valid(self):
         return (self.minutes is not None 
                 and self.seconds is not None 
-                and self.seconds <= 60)
+                and self.seconds < 60)
 
 
 def parse_pace(raw_pace: str, delim_pos: int = None) -> ParsedPace:
@@ -32,7 +32,7 @@ def parse_pace(raw_pace: str, delim_pos: int = None) -> ParsedPace:
     left_part = raw_pace[:delim_pos]
     right_part = raw_pace[delim_pos + 1:]
     minutes = int(left_part) if left_part.isdecimal() else None
-    seconds = int(right_part) if right_part.isdecimal() else None
+    seconds = int(right_part) if len(right_part) == 2 and right_part.isdecimal() else None
 
     return ParsedPace(minutes, seconds)
 

@@ -27,7 +27,14 @@ def test_is_valid_input(value, error, expected_result):
         ('  ', ParsedInput(value=None, error='')),
         ('10:00', ParsedInput(value=Tempo(seconds=600), error=None)),
         (' 5:47 ', ParsedInput(value=Tempo(seconds=347), error=None)),
-        ('5:61', ParsedInput(value=None, error=''))
+        ('7:43f', ParsedInput(value=None, error='')),
+        ('f7:43 ', ParsedInput(value=None, error='')),
+        ('5:61', ParsedInput(value=None, error='')),
+        ('5:60', ParsedInput(value=None, error='')),
+        ('03:50', ParsedInput(value=Tempo(seconds=230), error=None)),
+        ('03:5', ParsedInput(value=None, error='')),
+        ('12::50', ParsedInput(value=None, error='')),
+        ('-4:42', ParsedInput(value=None, error='')),
     ]
 )
 def test_parse_speed_or_tempo(raw_input, expected_parsed_input):
