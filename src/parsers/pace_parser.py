@@ -20,6 +20,12 @@ class ParsedPace:
                 and self.seconds is not None 
                 and self.seconds < 60)
 
+@dataclass(frozen=True)
+class ParsedSpeed:
+    speed: float = None
+
+    def is_valid(self):
+        return self.speed is not None
 
 def parse_pace(raw_pace: str, delim_pos: int = None) -> ParsedPace:
     if(raw_pace is None):
@@ -36,6 +42,15 @@ def parse_pace(raw_pace: str, delim_pos: int = None) -> ParsedPace:
 
     return ParsedPace(minutes, seconds)
 
+def parse_speed(raw_pace: str) -> ParsedSpeed:
+    try:
+        raw_pace = raw_pace.replace(',', '.', 1)
+        parsed_speed = ParsedSpeed(float(raw_pace))
+    except ValueError:
+        return ParsedSpeed(None)
+
+    return parsed_speed
+
 def parse_speed_or_tempo(raw: str = '') -> ParsedInput:
     raw = raw.strip() if raw is not None else ''
     if(raw == ''):
@@ -50,5 +65,8 @@ def parse_speed_or_tempo(raw: str = '') -> ParsedInput:
         else:
             return ParsedInput(error='Input looks like pace but it\'s incorrect')
 
+    parsed_speed: ParsedSpeed = parse_speed(raw)
+    if parsed_speed.is_valid():
+        return ParsedInput(Speed(parsed_speed.speed))
 
-    return ParsedInput(value=Speed(raw_value=10.0))
+    return ParsedInput(error='Invalid speed input')
