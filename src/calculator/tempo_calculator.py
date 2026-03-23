@@ -1,4 +1,3 @@
-from domain.distance import Distance, METRES_IN_KILOMETERS
 from domain.pace import *
 
 MINUTES_IN_HOUR: int = 60
