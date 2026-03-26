@@ -33,6 +33,7 @@ Thumbs.db
 /.qmake.cache
 /.qmake.stash
 *.kate-swp
+secrets.env
 
 # qtcreator generated files
 *.pro.user*
