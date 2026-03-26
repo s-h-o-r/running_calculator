@@ -1,3 +1,5 @@
+from tg_bot.use_cases import *
+
 def register_handlers(bot):
     @bot.message_handler(commands=['start'])
     def welcome_handler(message):
@@ -21,4 +23,4 @@ def register_handlers(bot):
 
     @bot.message_handler(func=lambda message: True)
     def message_handler(message):
-        bot.reply_to(message, message.text)
+        bot.reply_to(message, convert_pace_or_tempo(message.text))
